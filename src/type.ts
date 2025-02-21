@@ -15,6 +15,7 @@ export type PluginOptions = {
   outputDir?: string
   sourceDir?: string
   excludePath?: string | RegExp | Array<string | RegExp>
+  skipPrettier?: boolean
   prettierFilePath?: string
   useNamedExport?: boolean
 }

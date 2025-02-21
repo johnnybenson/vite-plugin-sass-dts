@@ -49,16 +49,19 @@ export const writeToFile = async (
     }
   }
 
-  const prettierdOutputFileString = await format(
-    outputFileString,
-    prettierOptions
-  )
+  let output = outputFileString;
+  if (options?.skipPrettier) {
+    output = await format(
+      outputFileString,
+      prettierOptions
+    )
+  }
 
   const writePath = formatWriteFilePath(fileName, options)
 
   await ensureDirectoryExists(writePath)
 
-  writeFile(writePath, `${prettierdOutputFileString}`, (err) => {
+  writeFile(writePath, `${output}`, (err) => {
     if (err) {
       console.log(err)
       throw err
